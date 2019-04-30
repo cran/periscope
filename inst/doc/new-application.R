@@ -78,7 +78,7 @@
 #                status = "danger",   #colored bar at the top
 #                collapsible = FALSE,
 #                p("Some great text in paragraph format"),
-#                pre("A pre-formatted (eg code) block"),
+#                pre("A pre-formatted (e.g. code) block"),
 #                actionButton("exButton", label = "Example") )
 #  
 #  add_ui_body(list(body1, body2))
