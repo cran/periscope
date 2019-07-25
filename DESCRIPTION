@@ -1,7 +1,7 @@
 Package: periscope
 Type: Package
 Title: Enterprise Streamlined 'Shiny' Application Framework
-Version: 0.4.2
+Version: 0.4.3
 Authors@R: c(
     person("Constance", "Brett", email="connie@aggregate-genius.com", role = c("aut", "cre")),
     person("Isaac", "Neuhaus", role = "aut", comment = "canvasXpress JavaScript Library Maintainer"),
@@ -27,10 +27,10 @@ RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-04-29 23:42:27 UTC; conniebrett
+Packaged: 2019-07-25 08:01:36 UTC; conniebrett
 Author: Constance Brett [aut, cre],
   Isaac Neuhaus [aut] (canvasXpress JavaScript Library Maintainer),
   Ger Inberg [ctb],
   Bristol-Meyers Squibb (BMS) [cph]
 Maintainer: Constance Brett <connie@aggregate-genius.com>
-Date/Publication: 2019-04-30 04:30:03 UTC
+Date/Publication: 2019-07-25 08:10:02 UTC
