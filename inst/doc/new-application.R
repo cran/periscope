@@ -16,12 +16,22 @@
 #  # Alert in the Body Area
 #  createAlert(session, "bodyAlert", style = "success",
 #              content = "Body Alert Text", append = FALSE)
+#  # Alert on Right Sidebar
+#  createAlert(session, "sidebarRightAlert",
+#              style = "error",
+#              content = "Error Alert Text")
 
 ## ---- eval=F-------------------------------------------------------------
 #  library(periscope)
 #  
 #  app_dir = tempdir()
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE)
+#  # application without a reset button
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, resetbutton = FALSE)
+#  # application with a right sidebar using the default icon
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = TRUE)
+#  # application with a right sidebar using a custom icon
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = "table")
 
 ## ---- eval=F-------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
@@ -31,6 +41,12 @@
 #  
 #  app_dir = tempdir()
 #  create_new_application(name = 'mytestapp', location = app_dir)
+#  # application without a reset button
+#  create_new_application(name = 'mytestapp', location = app_dir, resetbutton = FALSE)
+#  # application with a right sidebar using the default icon
+#  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = TRUE)
+#  # application with a right sidebar using a custom icon
+#  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = "table")
 
 ## ---- eval=F-------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
@@ -62,6 +78,21 @@
 #  
 #  # -- Change the Label of the Basic Tab
 #  add_ui_sidebar_basic(list(s1, s2), append = FALSE, tabname = "Options")
+
+## ---- eval=F-------------------------------------------------------------
+#  # -- Create UI sidebar Elements
+#  s1 <- rightSidebarTabContent(id = 1,
+#                               icon = "desktop",
+#                               title = "Tab 1",
+#                               active = TRUE,
+#                               div(helpText(align = "center",
+#                                            "Sample UI Text"),
+#                                   selectInput("sample1",
+#                                               "A Select",
+#                                               c("A", "B", "C"))))
+#  
+#  # -- Register Basic Elements in the ORDER SHOWN in the UI
+#  add_ui_sidebar_right(list(s1), append = FALSE)
 
 ## ---- eval=F-------------------------------------------------------------
 #  body1 <- box( id     = "bodyElement1",
