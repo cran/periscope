@@ -1,10 +1,10 @@
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  # Add a user action to the log
 #  loginfo("Your Information Message with %s, %s parameters", parm1, parm2, logger = ss_userAction.Log)
 #  
 #  logwarn("Your Warning Message!", logger = ss_userAction.Log)
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  # Alert on Sidebar>Basic tab
 #  createAlert(session, "sidebarBasicAlert",
 #              style = "info",
@@ -21,11 +21,13 @@
 #              style = "error",
 #              content = "Error Alert Text")
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  library(periscope)
 #  
 #  app_dir = tempdir()
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE)
+#  # application without a left sidebar
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, leftsidebar = FALSE)
 #  # application without a reset button
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, resetbutton = FALSE)
 #  # application with a right sidebar using the default icon
@@ -33,14 +35,16 @@
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = "table")
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  library(periscope)
 #  
 #  app_dir = tempdir()
 #  create_new_application(name = 'mytestapp', location = app_dir)
+#  # application without a left sidebar
+#  create_new_application(name = 'mytestapp', location = app_dir, leftsidebar = FALSE)
 #  # application without a reset button
 #  create_new_application(name = 'mytestapp', location = app_dir, resetbutton = FALSE)
 #  # application with a right sidebar using the default icon
@@ -48,10 +52,10 @@
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = "table")
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  # Plain text title
 #  set_app_parameters(title = "My Application Title")
 #  
@@ -65,7 +69,7 @@
 #                                      "<p><b>Author: </b>Me</p>",
 #                                      "<p><b>Date: </b>", Sys.Date(), "</p>"))
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  # -- Create UI sidebar Elements
 #  s1 <- div( helpText(align = "center", "Sample UI Text"),
 #                    selectInput("sample1", "A Select", c("A", "B", "C")) )
@@ -79,7 +83,7 @@
 #  # -- Change the Label of the Basic Tab
 #  add_ui_sidebar_basic(list(s1, s2), append = FALSE, tabname = "Options")
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  # -- Create UI sidebar Elements
 #  s1 <- rightSidebarTabContent(id = 1,
 #                               icon = "desktop",
@@ -94,7 +98,7 @@
 #  # -- Register Basic Elements in the ORDER SHOWN in the UI
 #  add_ui_sidebar_right(list(s1), append = FALSE)
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  body1 <- box( id     = "bodyElement1",
 #                title  = "Box 1",
 #                width  = 8,          #2/3 of the width
@@ -114,7 +118,7 @@
 #  
 #  add_ui_body(list(body1, body2))
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  source("program/fxn/makeplot.R")
 #  
 #  #build the deferred UI from ui_body.R
@@ -134,7 +138,7 @@
 #                  content = "Example Button Pressed!")
 #  })
 
-## ---- eval=F-------------------------------------------------------------
+## ---- eval=F------------------------------------------------------------------
 #  ref_data <- read.csv("program/data/mydata.csv")
 #  
 #  get_ref_data <- function() {

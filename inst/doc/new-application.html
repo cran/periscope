@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Dr. Connie Brett" />
 
-<meta name="date" content="2020-02-12" />
+<meta name="date" content="2020-03-31" />
 
 <title>Creating a new framework-based application</title>
 
@@ -96,7 +96,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -124,7 +124,7 @@ margin: auto;
 
 <h1 class="title toc-ignore">Creating a new framework-based application</h1>
 <h4 class="author">Dr. Connie Brett</h4>
-<h4 class="date">2020-02-12</h4>
+<h4 class="date">2020-03-31</h4>
 
 
 <div id="TOC">
@@ -175,7 +175,7 @@ margin: auto;
 <p><em>1: Left Sidebar</em></p>
 <p>The left sidebar is reserved for configuration options, settings, and general user application controls and functionality that will affect the body of the application.</p>
 <p>There are two tabs in the sidebar <strong>Basic</strong> and <strong>Advanced</strong>. The <em>Basic</em> tab is intended to be used for commonly accessed options and settings whereas the <em>Advanced</em> tab is reserved for less-common options and settings. The tab names (or labels) can be changed. Both tabs are optional and if one of them or both are missing there will be no tabs shown (the sidebar will not have tabbed areas).</p>
-<p>The left sidebar can be collapsed in desktop mode to maximize the user’s view of the application body when they do not immediately need the configuration options and settings.</p>
+<p>The left sidebar can be collapsed in desktop mode to maximize the user’s view of the application body when they do not immediately need the configuration options and settings. Also, it is possible to create an application without a left sidebar.</p>
 <p><em>2: Body</em></p>
 <p>This is the main body area for applications where charts and figures, tables, etc. are placed by the application developer. If desired the developer can add tabbed pages, etc.</p>
 <p><em>3: Right Sidebar</em></p>
@@ -278,13 +278,15 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">app_dir =<span class="st"> </span><span class="kw">tempdir</span>()</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># application without a reset button</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">resetbutton =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># application with a right sidebar using the default icon</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># application with a right sidebar using a custom icon</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
-<p>This generates a default sample application optionally with a right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># application without a left sidebar</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">leftsidebar =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># application without a reset button</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">resetbutton =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># application with a right sidebar using the default icon</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># application with a right sidebar using a custom icon</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
+<p>This generates a default sample application optionally with a left/right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
 <p><em>Note</em>: If the <em>mytestapp</em> directory in this location already exists it will not be overwritten - the function will give a warning and exit without modifying the user’s system.</p>
 </div>
 <div id="step-2-run" class="section level2">
@@ -302,13 +304,15 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">app_dir =<span class="st"> </span><span class="kw">tempdir</span>()</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># application without a reset button</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">resetbutton =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># application with a right sidebar using the default icon</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># application with a right sidebar using a custom icon</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
-<p>This generates a default blank application optionally with a right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># application without a left sidebar</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">leftsidebar =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># application without a reset button</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">resetbutton =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># application with a right sidebar using the default icon</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co"># application with a right sidebar using a custom icon</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
+<p>This generates a default blank application optionally with a left/right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
 <p><em>Note</em>: If the <em>mytestapp</em> directory in this location already exists it will not be overwritten - the function will give a warning and exit without modifying the user’s system.</p>
 </div>
 <div id="step-2-run-optional" class="section level2">
@@ -464,6 +468,9 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 </ul>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
