@@ -34,6 +34,8 @@
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = TRUE)
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = "table")
+#  # application with a custom header bar color (skin)
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, style = list(skin = "green"))
 
 ## ---- eval=F------------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
@@ -51,6 +53,8 @@
 #  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = TRUE)
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = "table")
+#  # application with a custom header bar color (skin)
+#  create_new_application(name = 'mytestapp', location = app_dir, style = list(skin = "green"))
 
 ## ---- eval=F------------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)

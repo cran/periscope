@@ -1,7 +1,7 @@
 Package: periscope
 Type: Package
 Title: Enterprise Streamlined 'Shiny' Application Framework
-Version: 0.4.10-1
+Version: 0.5.1
 Authors@R: c(
     person("Constance", "Brett", email="connie@aggregate-genius.com", role = c("aut", "cre")),
     person("Isaac", "Neuhaus", role = "aut", comment = "canvasXpress JavaScript Library Maintainer"),
@@ -22,16 +22,16 @@ Language: en-US
 LazyData: true
 Depends: R (>= 3.4)
 Imports: shiny (>= 1.1), shinydashboard (>= 0.5), shinydashboardPlus
-        (>= 0.5), shinyBS (>= 0.61), logging (>= 0.7-103), lubridate
-        (>= 1.6), DT (>= 0.2), openxlsx (>= 3.0), ggplot2 (>= 2.2)
+        (>= 0.5), shinyBS (>= 0.61), lubridate (>= 1.6), DT (>= 0.2),
+        openxlsx (>= 3.0), ggplot2 (>= 2.2), methods
 RoxygenNote: 7.1.0
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-05-19 21:36:12 UTC; conniebrett
+Packaged: 2020-07-03 18:27:07 UTC; conniebrett
 Author: Constance Brett [aut, cre],
   Isaac Neuhaus [aut] (canvasXpress JavaScript Library Maintainer),
   Ger Inberg [ctb],
   Bristol-Meyers Squibb (BMS) [cph]
 Maintainer: Constance Brett <connie@aggregate-genius.com>
-Date/Publication: 2020-05-22 08:50:02 UTC
+Date/Publication: 2020-07-03 19:00:02 UTC

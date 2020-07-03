@@ -12,7 +12,7 @@
 
 <meta name="author" content="Dr. Connie Brett" />
 
-<meta name="date" content="2020-05-19" />
+<meta name="date" content="2020-07-03" />
 
 <title>Creating a new framework-based application</title>
 
@@ -124,7 +124,7 @@ margin: auto;
 
 <h1 class="title toc-ignore">Creating a new framework-based application</h1>
 <h4 class="author">Dr. Connie Brett</h4>
-<h4 class="date">2020-05-19</h4>
+<h4 class="date">2020-07-03</h4>
 
 
 <div id="TOC">
@@ -248,6 +248,11 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 <a class="sourceLine" id="cb2-14" data-line-number="14">            <span class="dt">style =</span> <span class="st">&quot;error&quot;</span>, </a>
 <a class="sourceLine" id="cb2-15" data-line-number="15">            <span class="dt">content =</span> <span class="st">&quot;Error Alert Text&quot;</span>)</a></code></pre></div>
 </div>
+<div id="styling" class="section level4">
+<h4>Styling</h4>
+<p>The application can be created with a custom style. For now, only the color of the application header bar can be changed, but more options will be added later on. The bar color (aka the ‘skin’) is by default blue, but it can also be set to “black”, “purple”, “green”, “red” or “yellow”.</p>
+<p><em>See the Creating a Sample Application and Creating your Application sections for an example</em></p>
+</div>
 </div>
 <div id="shiny-modules" class="section level3">
 <h3>Shiny Modules</h3>
@@ -285,7 +290,9 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># application with a right sidebar using the default icon</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># application with a right sidebar using a custom icon</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># application with a custom header bar color (skin)</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>, <span class="dt">style =</span> <span class="kw">list</span>(<span class="dt">skin =</span> <span class="st">&quot;green&quot;</span>))</a></code></pre></div>
 <p>This generates a default sample application optionally with a left/right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
 <p><em>Note</em>: If the <em>mytestapp</em> directory in this location already exists it will not be overwritten - the function will give a warning and exit without modifying the user’s system.</p>
 </div>
@@ -311,7 +318,9 @@ Users can create their own tabs in the right sidebar up to a maximum of 5.</p>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># application with a right sidebar using the default icon</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co"># application with a right sidebar using a custom icon</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">rightsidebar =</span> <span class="st">&quot;table&quot;</span>)</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co"># application with a custom header bar color (skin)</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">create_new_application</span>(<span class="dt">name =</span> <span class="st">'mytestapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">style =</span> <span class="kw">list</span>(<span class="dt">skin =</span> <span class="st">&quot;green&quot;</span>))</a></code></pre></div>
 <p>This generates a default blank application optionally with a left/right sidebar in a subdirectory named <em>mytestapp</em> at the specified location. The location must exist when calling this function.</p>
 <p><em>Note</em>: If the <em>mytestapp</em> directory in this location already exists it will not be overwritten - the function will give a warning and exit without modifying the user’s system.</p>
 </div>
