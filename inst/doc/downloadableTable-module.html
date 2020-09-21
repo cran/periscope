@@ -12,17 +12,33 @@
 
 <meta name="author" content="Dr. Connie Brett" />
 
-<meta name="date" content="2020-07-03" />
+<meta name="date" content="2020-09-21" />
 
 <title>Using the downloadableTable Shiny Module</title>
 
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,14 +48,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +66,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -301,7 +319,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Using the downloadableTable Shiny Module</h1>
 <h4 class="author">Dr. Connie Brett</h4>
-<h4 class="date">2020-07-03</h4>
+<h4 class="date">2020-09-21</h4>
 
 
 <div id="TOC">
@@ -362,13 +380,13 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </center>
 <p>The downloadableTableUI function takes the unique object ID for the UI object. The next two arguments (downloadtypes and hovertext) are passed to the downloadFileButton and set the file types the button will allow the user to request and the downloadFileButton’s tooltip text. The contentHeight argument is optional but important - it sets the viewable height of the table content which can be any css-recognizable size value.</p>
 <p>downloadableTables are multi-select by default, however if you need a table to only allow single row selections you can set the singleSelect argument to TRUE.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Inside ui_body.R or ui_sidebar.R</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">downloadableTableUI</span>(<span class="st">&quot;object_id1&quot;</span>, </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">                    <span class="dt">downloadtypes =</span> <span class="kw">c</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;tsv&quot;</span>), </a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">                    <span class="dt">hovertext =</span> <span class="st">&quot;Download the data here!&quot;</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">                    <span class="dt">contentHeight =</span> <span class="st">&quot;300px&quot;</span>,</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">                    <span class="dt">singleSelect =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Inside ui_body.R or ui_sidebar.R</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">downloadableTableUI</span>(<span class="st">&quot;object_id1&quot;</span>, </span>
+<span id="cb1-4"><a href="#cb1-4"></a>                    <span class="dt">downloadtypes =</span> <span class="kw">c</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;tsv&quot;</span>), </span>
+<span id="cb1-5"><a href="#cb1-5"></a>                    <span class="dt">hovertext =</span> <span class="st">&quot;Download the data here!&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                    <span class="dt">contentHeight =</span> <span class="st">&quot;300px&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>                    <span class="dt">singleSelect =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="downloadabletable" class="section level2">
 <h2>downloadableTable</h2>
@@ -392,27 +410,27 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </ul>
 <p><strong>Reactive Return Value</strong></p>
 <p>The callModule function returns a reactive expression containing the selected rows (data, not references, rownumbers, etc - the actual table row data). This allows the user to capture this to update another table, chart, etc. as desired. It is acceptable to ignore the return value as well if this functionality is not needed.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Inside server_local.R</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">selectedrows &lt;-<span class="st"> </span><span class="kw">callModule</span>(downloadableTable, </a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                           <span class="st">&quot;object_id1&quot;</span>, </a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                           <span class="dt">logger =</span> ss_userAction.Log,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">                           <span class="dt">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">                           <span class="dt">downloaddatafxns =</span> <span class="kw">list</span>(<span class="dt">csv =</span> mydatafxn1, <span class="dt">tsv =</span> mydatafxn2),</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">                           <span class="dt">tabledata =</span> mydatafxn3,</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">                           <span class="dt">rownames =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">                           <span class="dt">caption =</span> <span class="st">&quot;This is a great table!  By: Me&quot;</span> )</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co"># selectedrows is the reactive return value, captured for later use</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Inside server_local.R</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>selectedrows &lt;-<span class="st"> </span><span class="kw">callModule</span>(downloadableTable, </span>
+<span id="cb2-4"><a href="#cb2-4"></a>                           <span class="st">&quot;object_id1&quot;</span>, </span>
+<span id="cb2-5"><a href="#cb2-5"></a>                           <span class="dt">logger =</span> ss_userAction.Log,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>                           <span class="dt">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>                           <span class="dt">downloaddatafxns =</span> <span class="kw">list</span>(<span class="dt">csv =</span> mydatafxn1, <span class="dt">tsv =</span> mydatafxn2),</span>
+<span id="cb2-8"><a href="#cb2-8"></a>                           <span class="dt">tabledata =</span> mydatafxn3,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>                           <span class="dt">rownames =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>                           <span class="dt">caption =</span> <span class="st">&quot;This is a great table!  By: Me&quot;</span> )</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># selectedrows is the reactive return value, captured for later use</span></span></code></pre></div>
 </div>
 <div id="sample-application" class="section level2">
 <h2>Sample Application</h2>
 <p>For a complete running shiny example application using the downloadableTable module you can create and run a <em>periscope</em> sample application using:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(periscope)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">app_dir =<span class="st"> </span><span class="kw">tempdir</span>()</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">create_new_application</span>(<span class="st">'mysampleapp'</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">runApp</span>(<span class="st">'mysampleapp'</span>, <span class="dt">appDir =</span> app_dir)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(periscope)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>app_dir =<span class="st"> </span><span class="kw">tempdir</span>()</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">create_new_application</span>(<span class="st">&#39;mysampleapp&#39;</span>, <span class="dt">location =</span> app_dir, <span class="dt">sampleapp =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">runApp</span>(<span class="st">&#39;mysampleapp&#39;</span>, <span class="dt">appDir =</span> app_dir)</span></code></pre></div>
 <p><br></p>
 </div>
 </div>
