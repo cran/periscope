@@ -1,7 +1,7 @@
 Package: periscope
 Type: Package
 Title: Enterprise Streamlined 'Shiny' Application Framework
-Version: 0.6.3
+Version: 1.0.0
 Authors@R: c(
     person("Constance", "Brett", email="connie@aggregate-genius.com", role = c("aut", "cre")),
     person("Isaac", "Neuhaus", role = "aut", comment = "canvasXpress JavaScript Library Maintainer"),
@@ -18,19 +18,19 @@ License: GPL-3
 Encoding: UTF-8
 Language: en-US
 Depends: R (>= 3.5)
-Imports: shiny (>= 1.1), shinydashboard (>= 0.5), shinyBS (>= 0.61),
+Imports: shiny (>= 1.5), shinydashboard (>= 0.5), shinyBS (>= 0.61),
         lubridate (>= 1.6), DT (>= 0.2), writexl (>= 1.3), ggplot2 (>=
-        2.2), methods, utils
+        2.2), methods, utils, fresh, yaml, grDevices
 RoxygenNote: 7.1.1
 Suggests: knitr, rmarkdown, shinydashboardPlus, testthat (>= 3.0),
-        canvasXpress, openxlsx (>= 3.0)
+        canvasXpress, openxlsx (>= 3.0), colourpicker
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2021-04-07 18:04:23 UTC; conniebrett
+Packaged: 2021-10-28 14:45:17 UTC; conniebrett
 Author: Constance Brett [aut, cre],
   Isaac Neuhaus [aut] (canvasXpress JavaScript Library Maintainer),
   Ger Inberg [ctb],
   Bristol-Meyers Squibb (BMS) [cph]
 Maintainer: Constance Brett <connie@aggregate-genius.com>
 Repository: CRAN
-Date/Publication: 2021-04-07 18:20:02 UTC
+Date/Publication: 2021-10-28 15:10:02 UTC

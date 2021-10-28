@@ -34,11 +34,12 @@
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = TRUE)
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, rightsidebar = "table")
-#  # application with a custom header bar color (skin)
-#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, style = list(skin = "green"))
+#  # application with a custom style file
+#  create_new_application(name = 'mytestapp', location = app_dir, sampleapp = TRUE, custom_theme_file = "periscope_style.yaml")
 
 ## ---- eval=F------------------------------------------------------------------
-#  runApp('mytestapp', appDir = app_dir)
+#  runApp(paste(app_dir, 'mytestapp', sep = .Platform$file.sep))
+#  
 
 ## ---- eval=F------------------------------------------------------------------
 #  library(periscope)
@@ -53,8 +54,8 @@
 #  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = TRUE)
 #  # application with a right sidebar using a custom icon
 #  create_new_application(name = 'mytestapp', location = app_dir, rightsidebar = "table")
-#  # application with a custom header bar color (skin)
-#  create_new_application(name = 'mytestapp', location = app_dir, style = list(skin = "green"))
+#  # application with a custom style file
+#  create_new_application(name = 'mytestapp', location = app_dir, custom_theme_file = "periscope_style.yaml")
 
 ## ---- eval=F------------------------------------------------------------------
 #  runApp('mytestapp', appDir = app_dir)
@@ -132,8 +133,7 @@
 #           p("Some great explanatory text in my application"))
 #      })
 #  
-#  callModule(downloadFile, "ex_d1", ss_userAction.Log, "mydownload",
-#             list(csv=get_ref_data))
+#  downloadFile("ex_d1", ss_userAction.Log, "mydownload", list(csv=get_ref_data))
 #  
 #  observeEvent(input$exButton, {
 #      loginfo("exButton Pressed!", logger = ss_userAction.Log)

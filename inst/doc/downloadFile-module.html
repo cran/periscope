@@ -12,7 +12,7 @@
 
 <meta name="author" content="Dr. Connie Brett" />
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-10-28" />
 
 <title>Using the downloadFile Shiny Module</title>
 
@@ -40,6 +40,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -140,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <h1 class="title toc-ignore">Using the downloadFile Shiny Module</h1>
 <h4 class="author">Dr. Connie Brett</h4>
-<h4 class="date">2021-04-07</h4>
+<h4 class="date">2021-10-28</h4>
 
 
 <div id="TOC">
@@ -183,11 +184,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Usage</h1>
 <div id="shiny-module-overview" class="section level2">
 <h2>Shiny Module Overview</h2>
-<p>Shiny modules consist of a pair of functions that modularize, or package, a small piece of reusable functionality. The UI function is called directly by the user to place the UI in the correct location (as with other shiny UI objects). The server function is not called directly by the user of the module. Instead the module server function is called only once to set it up using the shiny::callModule function inside the server function (i.e. user-local session scope. The callModule function supplies the first three arguments of the Shiny Module’s function inputs - the input, output, and session. Additional arguments supplied by the user in the callModule function are passed to the specific shiny module that is called. There can be additional helper functions that are a part of a shiny module.</p>
+<p>Shiny modules consist of a pair of functions that modularize, or package, a small piece of reusable functionality. The UI function is called directly by the user to place the UI in the correct location (as with other shiny UI objects). The module server function that is called only once to set it up using the module name as a function inside the server function (i.e. user-local session scope. The function first arguments is string represents the module id (the same id used in module UI function). Additional arguments can be supplied by the user based on the specific shiny module that is called. There can be additional helper functions that are a part of a shiny module.</p>
 <p>The <strong>downloadFile</strong> Shiny Module is a part of the <em>periscope</em> package and consists of the following functions:</p>
 <ul>
-<li><strong>downloadFileButton</strong> - the UI function to place the button in the application</li>
-<li><strong>downloadFile</strong> - the Server function supplied to callModule.</li>
+<li><strong>downloadFileButton</strong> - the UI function to place the button in the application.</li>
+<li><strong>downloadFile</strong> - the server function to be called inside server_local.R.</li>
 <li><strong>downloadFile_ValidateTypes</strong> - a helper function that will check a given list of file types and warn the caller if the list contains an invalid or unsupported type.</li>
 <li><strong>downloadFile_AvailableTypes</strong> - a helper function that will return a vector of supported file types.</li>
 </ul>
@@ -218,10 +219,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="downloadfile" class="section level2">
 <h2>downloadFile</h2>
-<p>The <strong>downloadFile</strong> function is not called directly - instead a call to shiny::callModule is made inside the server.R (or equivalent) file to initialize the module.</p>
-<p>The call consists of the following:</p>
+<p>The <strong>downloadFile</strong> function is called directly. The call consists of the following:</p>
 <ul>
-<li>the name of the module - unquoted</li>
 <li>the unique object ID that was provided to downloadFileButton when creating the UI object</li>
 <li>the logging logger to be used</li>
 <li>the root of the downloaded file name to be used in the browser as a character string or reactive expression that returns a character string</li>
@@ -238,20 +237,18 @@ The values are width:height (width/height which is unitless) for example for a 1
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inside server_local.R</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#single download type</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">callModule</span>(downloadFile, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;object_id1&quot;</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">logger =</span> ss_userAction.Log,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">datafxns =</span> <span class="fu">list</span>(<span class="at">csv =</span> mydatafxn1),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">aspectratio =</span> <span class="dv">1</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#multiple download types</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">callModule</span>(downloadFile, </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;object_id2&quot;</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">logger =</span> ss_userAction.Log,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">filenameroot =</span> <span class="st">&quot;mytype2&quot;</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">datafxns =</span> <span class="fu">list</span>(<span class="at">csv =</span> mydatafxn1, <span class="at">xlsx =</span> mydatafxn2),</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">aspectratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadFile</span>(<span class="st">&quot;object_id1&quot;</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">logger =</span> ss_userAction.Log,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">datafxns =</span> <span class="fu">list</span>(<span class="at">csv =</span> mydatafxn1),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">aspectratio =</span> <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#multiple download types</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadFile</span>(<span class="st">&quot;object_id2&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">logger =</span> ss_userAction.Log,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">filenameroot =</span> <span class="st">&quot;mytype2&quot;</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">datafxns =</span> <span class="fu">list</span>(<span class="at">csv =</span> mydatafxn1, <span class="at">xlsx =</span> mydatafxn2),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">aspectratio =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="sample-application" class="section level2">
 <h2>Sample Application</h2>
@@ -260,7 +257,7 @@ The values are width:height (width/height which is unitless) for example for a 1
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>app_dir <span class="ot">=</span> <span class="fu">tempdir</span>()</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">create_new_application</span>(<span class="st">&#39;mysampleapp&#39;</span>, <span class="at">location =</span> app_dir, <span class="at">sampleapp =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">runApp</span>(<span class="st">&#39;mysampleapp&#39;</span>, <span class="at">appDir =</span> app_dir)</span></code></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">runApp</span>(<span class="fu">paste</span>(app_dir, <span class="st">&#39;mysampleapp&#39;</span>, <span class="at">sep =</span> .Platform<span class="sc">$</span>file.sep))</span></code></pre></div>
 <p><br></p>
 </div>
 </div>
