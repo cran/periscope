@@ -12,7 +12,7 @@
 
 <meta name="author" content="Dr. Connie Brett" />
 
-<meta name="date" content="2023-07-03" />
+<meta name="date" content="2023-09-11" />
 
 <title>Using the downloadablePlot Shiny Module</title>
 
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Using the downloadablePlot Shiny
 Module</h1>
 <h4 class="author">Dr. Connie Brett</h4>
-<h4 class="date">2023-07-03</h4>
+<h4 class="date">2023-09-11</h4>
 
 
 <div id="TOC">
@@ -428,13 +428,13 @@ available with the clickOpts, hoverOpts and brushOpts functions. When
 you create an object using any of these functions shiny will send
 information about the user’s interactions with the plot to the server
 and make it available to you via an input$ variable.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inside ui_body.R or ui_sidebar.R</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadablePlotUI</span>(<span class="st">&quot;object_id1&quot;</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">downloadtypes =</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>, <span class="st">&quot;csv&quot;</span>), </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">download_hovertext =</span> <span class="st">&quot;Download the plot and data here!&quot;</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">height =</span> <span class="st">&quot;500px&quot;</span>, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">btn_halign =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Inside ui_body.R or ui_sidebar.R</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">downloadablePlotUI</span>(<span class="st">&quot;object_id1&quot;</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>                   <span class="at">downloadtypes =</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>, <span class="st">&quot;csv&quot;</span>), </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>                   <span class="at">download_hovertext =</span> <span class="st">&quot;Download the plot and data here!&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>                   <span class="at">height =</span> <span class="st">&quot;500px&quot;</span>, </span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>                   <span class="at">btn_halign =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
 </div>
 <div id="downloadableplot" class="section level2">
 <h2>downloadablePlot</h2>
@@ -482,14 +482,14 @@ it is acceptable and recommended to use reactive expressions providing
 dynamic values to the user from the application. All the above
 requirements apply.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inside server_local.R</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadablePlot</span>(<span class="st">&quot;object_id1&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">logger =</span> ss_userAction.Log,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">aspectratio =</span> <span class="fl">1.33</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">downloadfxns =</span> <span class="fu">list</span>(<span class="at">png =</span> myplotfxn, <span class="at">tsv =</span> mydatafxn),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">visibleplot =</span> myplotfxn)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Inside server_local.R</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">downloadablePlot</span>(<span class="st">&quot;object_id1&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                 <span class="at">logger =</span> ss_userAction.Log,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>                 <span class="at">filenameroot =</span> <span class="st">&quot;mydownload1&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>                 <span class="at">aspectratio =</span> <span class="fl">1.33</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                 <span class="at">downloadfxns =</span> <span class="fu">list</span>(<span class="at">png =</span> myplotfxn, <span class="at">tsv =</span> mydatafxn),</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                 <span class="at">visibleplot =</span> myplotfxn)</span></code></pre></div>
 <p><br></p>
 </div>
 </div>
