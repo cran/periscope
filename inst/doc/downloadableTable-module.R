@@ -1,4 +1,4 @@
-## ---- eval=F------------------------------------------------------------------
+## ----eval=F-------------------------------------------------------------------
 #  # Inside ui_body.R or ui_sidebar.R
 #  
 #  downloadableTableUI("object_id1",
@@ -7,7 +7,7 @@
 #                      contentHeight = "300px",
 #                      singleSelect = FALSE)
 
-## ---- eval = F----------------------------------------------------------------
+## ----eval = F-----------------------------------------------------------------
 #  # Inside server_local.R
 #  sketch <- htmltools::withTags(table(
 #      class = "display",
@@ -42,7 +42,7 @@
 #  
 #  # NOTE: selectedrows is the reactive return value, captured for later use
 
-## ---- eval=F------------------------------------------------------------------
+## ----eval=F-------------------------------------------------------------------
 #  library(periscope)
 #  
 #  app_dir = tempdir()
